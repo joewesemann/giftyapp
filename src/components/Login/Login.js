@@ -5,6 +5,7 @@ import LoginForm from './LoginForm';
 export default class Login extends Component {
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.logoContainer}>
@@ -15,7 +16,7 @@ export default class Login extends Component {
           <Text style={styles.title}>Giftysaur.us</Text>
         </View>
         <View style={styles.formContainer}>
-          <LoginForm />
+          <LoginForm navigate = {navigate} />
         </View>
       </KeyboardAvoidingView>
     )

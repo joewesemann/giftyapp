@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, StatusBar, AsyncStorage, ActivityIndicator } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
+const ACCESS_TOKEN = 'access_token';
 
-const ACCESS_TOKEN = '';
+const loginRouteAction = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Main' })
+  ]
+});
 
 export default class LoginForm extends Component {
 
@@ -51,6 +58,8 @@ export default class LoginForm extends Component {
           this.setState({error: ""});
           //On success we will store the access_token in the AsyncStorage
           this.storeToken(accessToken);
+          //route to the main home view
+          this.props.navigate('Main'); // dispatch to action instead?????????
       } else {
           //Handle error
           let error = res;
@@ -63,13 +72,11 @@ export default class LoginForm extends Component {
     }
   }
 
-
   render() {
     return (
       <View style={styles.container}>
         
         <StatusBar barStyle='light-content' />
-
         <TextInput 
         placeholder='username'
         style={styles.input}
